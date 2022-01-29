@@ -1,0 +1,50 @@
+version: '3'
+
+services:
+  portfolio:
+    build: 
+      context: .
+      dockerfile: portfolio/Dockerfile
+    command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    container_name: portfolio
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: portfolio-database
+    volumes:
+      - ./portfolio:/portfolio
+    ports:
+      - 8000:8000
+    depends_on:
+      - postgres
+
+  proxy:
+    image: nginx:1.19.0
+    container_name: reverse_proxy
+    build:
+      context: .
+      dockerfile: portfolio/reverse_proxy_config/Dockerfile
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: NhKB1WMa7G
+      POSTGRES_DB: portfolio-database
+    volumes:
+      - ./portfolio/reverse_proxy_config/production_config/:/etc/nginx/conf.d
+      - ./portfolio/reverse_proxy_config/certificates/etc_ssl_certs:/etc/ssl/certs
+      - ./portfolio/reverse_proxy_config/certificates/etc_ssl_private:/etc/ssl/private
+      - ./portfolio/reverse_proxy_config/nginx_snippets:/etc/nginx/snippets
+      - ./nginx-logs:/var/log/nginx/
+    ports:
+      - 80:80
+      - 443:443
+    depends_on:
+      - portfolio
+
+  postgres:
+    image: postgres:14.1
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: portfolio-database
