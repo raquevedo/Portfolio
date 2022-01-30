@@ -12,7 +12,7 @@ services:
       POSTGRES_PASSWORD: password
       POSTGRES_DB: portfolio-database
     volumes:
-      - ./portfolio:/portfolio
+      - ./portfolio:/web_service
     ports:
       - 8000:8000
     depends_on:
@@ -29,10 +29,10 @@ services:
       POSTGRES_PASSWORD: password
       POSTGRES_DB: portfolio-database
     volumes:
-      - ./portfolio/nginx_conf/nginx.conf/:/etc/nginx/conf.d
+      - ./portfolio/nginx_conf/conf_file/:/etc/nginx/conf.d
       - ./portfolio/nginx_conf/certificates/etc_ssl_certs:/etc/ssl/certs
       - ./portfolio/nginx_conf/certificates/etc_ssl_private:/etc/ssl/private
-      - ./portfolio/nginx_conf/nginx_snippets:/etc/nginx/snippets
+      - ./portfolio/nginx_conf/snippets:/etc/nginx/snippets
       - ./nginx-logs:/var/log/nginx/
     ports:
       - 80:80
