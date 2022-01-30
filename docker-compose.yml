@@ -23,16 +23,16 @@ services:
     container_name: reverse_proxy
     build:
       context: .
-      dockerfile: portfolio/reverse_proxy_config/Dockerfile
+      dockerfile: portfolio/nginx_conf/Dockerfile
     environment:
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: NhKB1WMa7G
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
       POSTGRES_DB: portfolio-database
     volumes:
-      - ./portfolio/reverse_proxy_config/production_config/:/etc/nginx/conf.d
-      - ./portfolio/reverse_proxy_config/certificates/etc_ssl_certs:/etc/ssl/certs
-      - ./portfolio/reverse_proxy_config/certificates/etc_ssl_private:/etc/ssl/private
-      - ./portfolio/reverse_proxy_config/nginx_snippets:/etc/nginx/snippets
+      - ./portfolio/nginx_conf/nginx.conf/:/etc/nginx/conf.d
+      - ./portfolio/nginx_conf/certificates/etc_ssl_certs:/etc/ssl/certs
+      - ./portfolio/nginx_conf/certificates/etc_ssl_private:/etc/ssl/private
+      - ./portfolio/nginx_conf/nginx_snippets:/etc/nginx/snippets
       - ./nginx-logs:/var/log/nginx/
     ports:
       - 80:80
