@@ -1,0 +1,21 @@
+{% extends "../generic/base.html" %}
+
+{% block title %}- Homepage{% endblock %}
+
+{% block content %}
+    <div class="container align-items-center" id="homepage-menu">
+        <div class="row">
+            {% for app in apps%}
+                <div class="col-lg">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">{{ app.title }}</h4>
+                            <p class="card-text">{{ app.text }}</p>
+                            <a href="{% url app.url %}" class="btn btn-primary">{{ app.link_text }}</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
