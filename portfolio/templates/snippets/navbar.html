@@ -1,0 +1,36 @@
+<nav class="navbar navbar-expand-md navbar-default fixed-top navbar-custom">
+    <div class="container-fluid">
+        <a class="navbar-brand text-light" href="{% url 'homepage' %}">Portfolio</a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <div class="nav-button">
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="{% url 'projects:projects' %}">Projects</a>
+                    </li>
+                </div>
+                <div class="nav-button">
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="{% url 'contact:contact' %}">Contact</a>
+                    </li>
+                </div>
+                <div class="nav-button">
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="{% url 'about_me:about_me' %}">About me</a>
+                    </li>
+                </div>
+            </ul>
+            <ul class="navbar-nav ms-auto">
+                <div class="nav-button">
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="https://github.com/raquevedo/Portfolio">Github</a>
+                    </li>
+                </div>
+                <div class="nav-button">
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="https://www.linkedin.com/in/ramiro-quevedo-9356181bb/">My LinkedIn</a>
+                    </li>
+                </div>
+            </ul>
+        </div>
+    </div>
+</nav>

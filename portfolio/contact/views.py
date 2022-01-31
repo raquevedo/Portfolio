@@ -4,4 +4,4 @@ from django.shortcuts import render
 
 def contact(request):
     context = {}
-    return render(request, 'context/context.html', context)
+    return render(request, 'contact/contact.html', context)
