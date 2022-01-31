@@ -1,0 +1,28 @@
+$primary: rgb(119, 32, 160);
+$secondary: rgb(255, 255, 255);
+
+@import "../scss/bootstrap.scss";
+
+body{
+    font-family: "Open Sans", sans-serif;
+    background-color: map-get($grays , "800");
+    font-weight: 400;
+}
+
+.nav-button {
+    border: 0.2em;
+    border-radius: 0.2em;
+    border-style: solid;
+    border-color: $primary;
+    background-color: $primary;
+}
+
+.nav-button:hover {
+    border-color: black;
+    background-color: black;
+}
+
+.navbar-custom{
+    background-color: $primary;
+    margin-bottom: 2%;
+}
